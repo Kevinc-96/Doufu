@@ -5,11 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Franklin Gothic Medium';
 }
 
 header {
   background-color: darksalmon;
   padding: 1rem;
+  font-size: 16pt;
 }
 
 header a {
@@ -17,4 +19,30 @@ header a {
   font-weight: bold;
   text-decoration: none;
   font-family: 'Franklin Gothic Medium';
+}
+
+main {
+  padding: 1rem;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item {
+  border: 1px black solid;
+  margin: 1rem;
+}
+
+.item img {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.item-details {
+  padding: 1rem;
 }
