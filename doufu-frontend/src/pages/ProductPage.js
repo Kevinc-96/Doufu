@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useReducer, useState } from 'react';
+import { useContext, useEffect, useReducer, useState } from 'react';
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import ListGroup from 'react-bootstrap/esm/ListGroup';
@@ -9,6 +9,10 @@ import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
+import LoadBox from '../components/LoadBox';
+import MsgBox from '../components/MsgBox';
+import { getError } from '../utils';
+import { Store } from '../Store';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -21,8 +25,7 @@ const reducer = (state, action) => {
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
     default:
-      // return current state
-      return state;
+      return state; // current state
   }
 };
 
@@ -43,18 +46,27 @@ function ProductPage() {
         const result = await axios.get(`/api/products/item/${slug}`);
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (error) {
-        dispatch({ type: 'FETCH_FAIL', payload: error.message });
+        dispatch({ type: 'FETCH_FAIL', payload: getError(error) });
       }
       // setProducts(result.data);
     };
     fetchData();
-    // Include slug as a dependency
-  }, [slug]);
+  }, [slug]); // Include slug as a dependency
+
+  // Separate dispatch for the cart
+  const { state, dispatch: contextDispatch } = useContext(Store);
+
+  const addToCartHandler = () => {
+    contextDispatch({
+      type: 'ADD_TO_CART',
+      payload: { ...product, quantity: 1 },
+    });
+  };
 
   return loading ? (
-    <div>Loading...</div>
+    <LoadBox />
   ) : error ? (
-    <div>{error}</div>
+    <MsgBox variant="danger">{error}</MsgBox>
   ) : (
     <div>
       <Row>
@@ -88,7 +100,9 @@ function ProductPage() {
             </ListGroup.Item>
             <ListGroup.Item className="border-0">
               {product.stock > 0 ? (
-                <Button className="add-to-cart">Add to cart</Button>
+                <Button onClick={addToCartHandler} className="add-to-cart">
+                  Add to cart
+                </Button>
               ) : (
                 <Badge bg="danger">Out of Stock</Badge>
               )}

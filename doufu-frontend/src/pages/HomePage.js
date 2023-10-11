@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from '../components/Product';
 import { Helmet } from 'react-helmet-async';
+import LoadBox from '../components/LoadBox';
+import MsgBox from '../components/MsgBox';
 // import data from './data.js';
 
 // define a reducer function
@@ -58,13 +60,13 @@ function HomePage() {
       <Helmet>
         <title>doufu</title>
       </Helmet>
-      <h1>Featured Pastries</h1>
+      <h1>Featured Items</h1>
       <div className="products">
         {/* Implement a loading screen */}
         {loading ? (
-          <div>Loading...</div>
+          <LoadBox />
         ) : error ? (
-          <div>{error}</div>
+          <MsgBox variant="danger">{error}</MsgBox>
         ) : (
           <Row>
             {/* Reference the products fetched by the state hook above */}
