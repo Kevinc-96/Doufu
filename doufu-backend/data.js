@@ -37,7 +37,7 @@ const data = {
       name: 'Green Bean Bun',
       slug: 'green-bean-bun',
       category: 'buns',
-      image: '/images/greenbun.jpg',
+      image: '/images/greenbun.jpeg',
       price: 5,
       stock: 10,
       rating: 4.2,

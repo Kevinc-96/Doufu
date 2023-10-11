@@ -8,41 +8,83 @@ body {
   font-family: 'Franklin Gothic Medium';
 }
 
-header {
-  background-color: darksalmon;
-  padding: 1rem;
-  font-size: 16pt;
+.website-container {
+  min-height: 100vh;
 }
 
-header a {
+.navbar {
+  background-color: darksalmon;
+  /* padding: 1rem; */
+  /* font-size: 16pt; */
+}
+
+/* .navbar-brand {
   color: white;
   font-weight: bold;
   text-decoration: none;
   font-family: 'Franklin Gothic Medium';
-}
+} */
 
 main {
   padding: 1rem;
+  flex: 1;
 }
 
-.items {
+.products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.item {
-  border: 1px black solid;
+.product {
+  /* border: 1px black solid; */
   margin: 1rem;
 }
 
-.item img {
+.product img {
   width: 100%;
-  max-width: 400px;
+  /* max-width: 400px; */
   height: 400px;
   object-fit: cover;
 }
 
-.item-details {
+.product-name-menu {
+  text-decoration: none;
+  color: black;
+}
+
+.product-name-menu:hover {
+  color: black;
+}
+
+.product-details {
   padding: 1rem;
+  background-color: #f5f5fa;
+}
+
+.rating span {
+  color: darksalmon;
+}
+
+.stars {
+  margin-right: 0.5rem;
+}
+
+.btn-primary {
+  background-color: darksalmon;
+  color: black;
+  border: none;
+}
+
+.product-page-image {
+  max-width: 100%;
+}
+
+.in-stock {
+  width: 30%;
+}
+
+.add-to-cart {
+  margin-top: 1rem;
+  width: 30%;
 }
