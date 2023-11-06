@@ -48,6 +48,7 @@ function ProductPage() {
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (error) {
         dispatch({ type: 'FETCH_FAIL', payload: getError(error) });
+        console.log(error);
       }
       // setProducts(result.data);
     };

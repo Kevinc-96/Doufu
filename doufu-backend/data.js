@@ -1,7 +1,7 @@
 const data = {
   products: [
     {
-      _id: '1',
+      // _id: '1',
       name: 'Red Bean Bun',
       slug: 'red-bean-bun',
       category: 'buns',
@@ -13,7 +13,7 @@ const data = {
       desc: 'Delicious bun with red bean filling',
     },
     {
-      _id: '2',
+      // _id: '2',
       name: 'Burnt Cheese Cakes',
       slug: 'burnt-cheese-cakes',
       category: 'cakes',
@@ -25,7 +25,7 @@ const data = {
       desc: 'Delicious cheese cake with a burnt finish on the top',
     },
     {
-      _id: '3',
+      // _id: '3',
       name: 'Pineapple Bun',
       slug: 'pineapple-bun',
       category: 'buns',
@@ -37,7 +37,7 @@ const data = {
       desc: 'Delicious bun with a pineapple like look on the top',
     },
     {
-      _id: '4',
+      // _id: '4',
       name: 'Green Bean Bun',
       slug: 'green-bean-bun',
       category: 'buns',
