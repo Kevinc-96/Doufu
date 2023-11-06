@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import axios from 'axios';
 import logger from 'use-reducer-logger';
 import Row from 'react-bootstrap/Row';
@@ -44,7 +43,7 @@ function HomePage() {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        // Make an AJAX request an address, retrieve data then store in a variable
+        // Make an AJAX request to an address, retrieve data then store in a variable
         const result = await axios.get('/api/products');
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (error) {

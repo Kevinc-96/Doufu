@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { useContext, useEffect, useReducer, useState } from 'react';
+import { useContext, useEffect, useReducer } from 'react';
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import ListGroup from 'react-bootstrap/esm/ListGroup';
 import Badge from 'react-bootstrap/esm/Badge';
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
@@ -30,6 +30,7 @@ const reducer = (state, action) => {
 };
 
 function ProductPage() {
+  const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
@@ -55,12 +56,24 @@ function ProductPage() {
 
   // Separate dispatch for the cart
   const { state, dispatch: contextDispatch } = useContext(Store);
+  const { cart } = state;
 
-  const addToCartHandler = () => {
+  const addToCartHandler = async () => {
+    const itemExists = cart.cartItems.find((a) => a._id === product._id);
+    const quantity = itemExists ? itemExists.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
+
+    if (data.stock < quantity) {
+      window.alert('Product Out of Stock');
+      return;
+    }
+
     contextDispatch({
       type: 'ADD_TO_CART',
-      payload: { ...product, quantity: 1 },
+      payload: { ...product, quantity },
     });
+    // Redirect to cart when user adds an item to the cart
+    navigate('/cart');
   };
 
   return loading ? (

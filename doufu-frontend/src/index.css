@@ -88,3 +88,11 @@ main {
   margin-top: 1rem;
   width: 30%;
 }
+
+.thumbnail {
+  height: 80px;
+}
+
+.small-container {
+  max-width: 600px;
+}
