@@ -3,9 +3,9 @@ import Product from '../models/productModel.js';
 import User from '../models/userModel.js';
 import data from '../data.js';
 
-const Router = express.Router();
+const dataRouter = express.Router();
 
-Router.get('/', async (req, res) => {
+dataRouter.get('/', async (req, res) => {
   await Product.deleteOne({});
   const Products = await Product.insertMany(data.products);
   await User.deleteOne({});
@@ -13,4 +13,4 @@ Router.get('/', async (req, res) => {
   res.send({ Products, Users });
 });
 
-export default Router;
+export default dataRouter;
